@@ -169,7 +169,7 @@ Start the frontend:
 ```bash
 # Start an OpenAI compatible HTTP server with prompt templating, tokenization, and routing.
 # For local dev: --discovery-backend file avoids etcd (workers and frontend must share a disk)
-python3 -m dynamo.frontend --http-port 8000 --discovery-backend file
+python3 -m dynamo.frontend --http-port 8000 --store-kv file
 ```
 
 In another terminal (or same terminal if using background mode), start a worker for your chosen backend:
@@ -182,7 +182,7 @@ python3 -m dynamo.sglang --model-path Qwen/Qwen3-0.6B --discovery-backend file
 python3 -m dynamo.trtllm --model-path Qwen/Qwen3-0.6B --discovery-backend file
 
 # vLLM (note: uses --model, not --model-path)
-python3 -m dynamo.vllm --model Qwen/Qwen3-0.6B --discovery-backend file \
+python3 -m dynamo.vllm --model Qwen/Qwen3-0.6B --store-kv file \
   --kv-events-config '{"enable_kv_cache_events": false}'
 ```
 
