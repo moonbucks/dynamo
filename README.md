@@ -186,6 +186,12 @@ python3 -m dynamo.vllm --model Qwen/Qwen3-0.6B --store-kv file \
   --kv-events-config '{"enable_kv_cache_events": false}'
 ```
 
+When launching the second/third worker, set VLLM_NIXL_SIDE_CHANNEL_PORT so multiple workers bind to the same port. If not specified, default is 5600. 
+
+```bash
+VLLM_NIXL_SIDE_CHANNEL_PORT=5601  python3 -m dynamo.vllm --model deepseek-ai/DeepSeek-R1-Distill-Llama-8B --store-kv file   --kv-events-config '{"enable_kv_cache_events": false}'
+```
+
 > **Note:** For dependency-free local development, disable KV event publishing (avoids NATS):
 > - **vLLM:** Add `--kv-events-config '{"enable_kv_cache_events": false}'`
 > - **SGLang:** No flag needed (KV events disabled by default)
